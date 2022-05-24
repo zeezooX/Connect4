@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1653422709 source:d:\documents\c++\connect4\main.cpp
+	<windows.h>
+	<bits/stdc++.h>
+
