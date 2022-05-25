@@ -8,10 +8,11 @@ HANDLE hConsole;
 
 void displayTable()
 {
+    setCursor(0, 9);
     setColor(0, 0, 1, 0);
-    printf("\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n|   |   |   |   |   |   |   |\n+---+---+---+---+---+---+---+\n");
+    cout << "\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n                |   |   |   |   |   |   |   |\n                +---+---+---+---+---+---+---+\n            ";
     setColor(1, 1, 1, 0);
-    printf("\n (1) (2) (3) (4) (5) (6) (7)\n\n");
+    cout << "\n                 (1) (2) (3) (4) (5) (6) (7)\n\n";
 }
 
 void setColor(bool red, bool green, bool blue, bool highlight)
@@ -56,9 +57,9 @@ void makeMove(int col, int height[], long long bitboard[], int *counter, int mov
     for(int a = 0; a < 2; a++)
     {
         setColor(1, a, 0, 0);
-        for(int i = 2, k = 0; i <= 26; i += 4, k++)
+        for(int i = 18, k = 0; i <= 42; i += 4, k++)
         {
-            for(int j = 15; j >= 5; j -= 2, k++)
+            for(int j = 21; j >= 11; j -= 2, k++)
             {
                 if(bitboard[a] & (1LL << k))
                 {
@@ -66,13 +67,13 @@ void makeMove(int col, int height[], long long bitboard[], int *counter, int mov
                     {
                         setColor(1, a, 0, 1);
                         setCursor(i - 1, j);
-                        printf(" O ");
-                        setColor(1, 0, 0, 0);
+                        cout << " O ";
+                        setColor(1, a, 0, 0);
                     }
                     else
                     {
                         setCursor(i - 1, j);
-                        printf(" O ");
+                        cout << " O ";
                     }
                 }
             }
