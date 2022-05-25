@@ -32,8 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="algorithms.cpp" />
-		<Unit filename="algorithms.h" />
+		<Unit filename="ai.cpp" />
+		<Unit filename="ai.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Extensions />

@@ -1,5 +1,32 @@
 # depslib dependency file v1.0
-1653422709 source:d:\documents\c++\connect4\main.cpp
+1653497254 source:d:\documents\c++\connect4\main.cpp
+	<windows.h>
+	"ai.h"
+	"game.h"
+	"main.h"
+	<bits/stdc++.h>
+
+1653425222 source:d:\documents\c++\connect4\algorithms.cpp
+
+1653425222 d:\documents\c++\connect4\algorithms.h
+
+1653492610 d:\documents\c++\connect4\main.h
+	<windows.h>
+	<bits/stdc++.h>
+
+1653491417 source:d:\documents\c++\connect4\ai.cpp
+	"ai.h"
+	<bits/stdc++.h>
+
+1653491417 d:\documents\c++\connect4\ai.h
+	<bits/stdc++.h>
+
+1653496704 source:d:\documents\c++\connect4\game.cpp
+	<windows.h>
+	"game.h"
+	<bits/stdc++.h>
+
+1653497138 d:\documents\c++\connect4\game.h
 	<windows.h>
 	<bits/stdc++.h>
 

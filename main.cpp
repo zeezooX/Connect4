@@ -1,5 +1,6 @@
 #include <windows.h>
-#include "algorithms.h"
+#include "ai.h"
+#include "game.h"
 #include "main.h"
 #include <bits/stdc++.h>
 
@@ -7,17 +8,8 @@ using namespace std;
 
 int main()
 {
-    //make text bold and bigger
-    static CONSOLE_FONT_INFOEX  fontex;
-    fontex.cbSize = sizeof(CONSOLE_FONT_INFOEX);
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    GetCurrentConsoleFontEx(hConsole, 0, &fontex);
-    fontex.FontWeight = 700;
-    fontex.dwFontSize.X = 24;
-    fontex.dwFontSize.Y = 24;
-    SetCurrentConsoleFontEx(hConsole, NULL, &fontex);
+    setup();
 
-    //welcoming message
     printf("Welcome to ");
     setColor(0, 0, 1, 0);
     printf("C");
@@ -30,29 +22,41 @@ int main()
     setColor(1, 1, 1, 0);
     printf("!\n\n");
 
-    //mode select
-    printf("Select Mode:\nPlayer vs Player (1)\nPlayer vs Computer (2)\n");
-    int x;
-    scanf("%i", &x);
+    while(1)
+    {
+        setCursor(0, 2);
+        printf("                                                               ");
+        setCursor(0, 2);
+        printf("Select difficulty (1-9), or enter (0) for player-vs-player: ");
+        int x;
+        scanf("%i", &x);
+        displayTable();
+        long long bitboard[2] = {0, 0};
+        int height[7] = {0, 7, 14, 21, 28, 35, 42};
+        int counter = 0;
+        int moves[42];
+        if(!x)
+        {
+            while(1)
+            {
+                printf("Player %i's turn: ", (counter & 1) + 1);
+                int y;
+                scanf("%i", &y);
+                y--;
+                makeMove(y, height, bitboard, &counter, moves);
+                setCursor(0, 20);
+                printf("                     ");
+                setCursor(0, 20);
+                if(isWin(bitboard[(counter - 1) & 1]))
+                {
+                    printf("PLAYER %i WON!", ((counter - 1) & 1) + 1);
+                    break;
+                }
+            }
+        }
+        else
+        {
 
-}
-
-//change text color
-void setColor(bool red, bool green, bool blue, bool highlight)
-{
-    SetConsoleTextAttribute(hConsole,
-                            (red ? FOREGROUND_RED : 0) |
-                            (green ? FOREGROUND_GREEN : 0) |
-                            (blue ? FOREGROUND_BLUE : 0) |
-                            (highlight ? (BACKGROUND_GREEN | BACKGROUND_RED) : 0)
-                            );
-}
-
-//change position of cursor
-void setCursor(int column, int line)
-{
-    COORD coord;
-    coord.X = column;
-    coord.Y = line;
-    SetConsoleCursorPosition(hConsole, coord);
+        }
+    }
 }
