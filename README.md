@@ -1,2 +1,2 @@
 # Connect4
-Connect Four Board Game
+Command-line Connect Four board game for Windows.
