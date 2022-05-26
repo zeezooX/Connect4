@@ -1,26 +1,15 @@
 #include <windows.h>
 #include "ai.h"
 #include "game.h"
-#include "main.h"
 #include <bits/stdc++.h>
 
 using namespace std;
 
 int main()
 {
-    setup();
+    srand (time(NULL));
 
-//    printf("Welcome to ");
-//    setColor(0, 0, 1, 0);
-//    printf("C");
-//    setColor(1, 1, 0, 0);
-//    printf("O");
-//    setColor(0, 0, 1, 0);
-//    printf("NNECT ");
-//    setColor(1, 0, 0, 0);
-//    printf("4");
-//    setColor(1, 1, 1, 0);
-//    printf("!\n\n");
+    setup();
 
     string str[] =
     {
@@ -64,7 +53,7 @@ int main()
             {
                 setCursor(16, 26);
 
-                setColor(1, ((counter)& 1), 0, 0);
+                setColor(1, (counter & 1), 0, 0);
                 cout << "Player ";
                 cout << (((counter)& 1) + 1);
                 setColor(1, 1, 1, 0);
@@ -79,18 +68,83 @@ int main()
                 setCursor(16, 26);
                 if(isWin(bitboard[(counter - 1) & 1]))
                 {
-                    setColor(1, ((counter - 1)& 1), 0, 0);
+                    setColor(1, ((counter - 1) & 1), 0, 0);
                     cout << "PLAYER ";
-                    cout << (((counter - 1)& 1) + 1);
+                    cout << (((counter - 1) & 1) + 1);
                     setColor(1, 1, 1, 0);
                     cout << " WON!";
+                    break;
+                }
+                else if(listMoves(height).empty())
+                {
+                    cout << "DRAW!";
                     break;
                 }
             }
         }
         else
         {
+            while(1)
+            {
+                if(counter & 1)
+                {
+                    setCursor(16, 26);
 
+                    setColor(1, 1, 0, 0);
+                    cout << "Computer";
+                    setColor(1, 1, 1, 0);
+                    cout << "'s turn...";
+
+                    int y = minimax(bitboard, height, INT_MIN, INT_MAX, x, 1).first;
+                    makeMove(y, height, bitboard, &counter, moves);
+                    setCursor(16, 26);
+                    printf("                     ");
+                    setCursor(16, 26);
+                    if(isWin(bitboard[1]))
+                    {
+                        setColor(1, 1, 0, 0);
+                        cout << "COMPUTER";
+                        setColor(1, 1, 1, 0);
+                        cout << " WON!";
+                        break;
+                    }
+                    else if(listMoves(height).empty())
+                    {
+                        cout << "DRAW!";
+                        break;
+                    }
+                }
+                else
+                {
+                    setCursor(16, 26);
+
+                    setColor(1, 0, 0, 0);
+                    cout << "Your";
+                    setColor(1, 1, 1, 0);
+                    cout << " turn: ";
+
+                    int y;
+                    scanf("%i", &y);
+                    y--;
+                    makeMove(y, height, bitboard, &counter, moves);
+                    setCursor(16, 26);
+                    printf("                     ");
+                    setCursor(16, 26);
+                    if(isWin(bitboard[0]))
+                    {
+                        setColor(1, 0, 0, 0);
+                        cout << "YOU";
+                        setColor(1, 1, 1, 0);
+                        cout << " WON!";
+                        break;
+                    }
+                    else if(listMoves(height).empty())
+                    {
+                        cout << "DRAW!";
+                        break;
+                    }
+                }
+            }
         }
     }
 }

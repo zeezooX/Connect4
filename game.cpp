@@ -43,6 +43,11 @@ void setup()
     fontex.dwFontSize.X = 24;
     fontex.dwFontSize.Y = 24;
     SetCurrentConsoleFontEx(hConsole, NULL, &fontex);
+
+    SetConsoleTitleA("Connect Four");
+
+    HWND console = GetConsoleWindow();
+    MoveWindow(console, 0, 0, 800, 800, TRUE);
 }
 
 void makeMove(int col, int height[], long long bitboard[], int *counter, int moves[])
