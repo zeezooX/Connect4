@@ -12,5 +12,4 @@ pair<int, int> minimax(long long bitboard[], int height[], int alpha, int beta, 
 
 int scoreBoard(long long bitboard[])
 {
-
 }

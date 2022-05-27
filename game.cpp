@@ -19,10 +19,9 @@ void setColor(bool red, bool green, bool blue, bool highlight)
 {
     SetConsoleTextAttribute(hConsole,
                             (red ? FOREGROUND_RED : 0) |
-                            (green ? FOREGROUND_GREEN : 0) |
-                            (blue ? FOREGROUND_BLUE : 0) |
-                            (highlight ? (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED) : 0)
-                           );
+                                (green ? FOREGROUND_GREEN : 0) |
+                                (blue ? FOREGROUND_BLUE : 0) |
+                                (highlight ? (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED) : 0));
 }
 
 void setCursor(int col, int line)
@@ -47,28 +46,29 @@ void setup()
     SetConsoleTitleA("Connect Four");
 
     HWND console = GetConsoleWindow();
-    MoveWindow(console, 0, 0, 800, 800, TRUE);
+    MoveWindow(console, 0, 0, 750, 750, TRUE);
 }
 
 void makeMove(int col, int height[], long long bitboard[], int *counter, int moves[])
 {
     vector<int> v = listMoves(height);
-    if(!count(v.begin(), v.end(), col)) return;
+    if (!count(v.begin(), v.end(), col))
+        return;
 
     long long m = 1LL << height[col]++;
     bitboard[(*counter) & 1] ^= m;
     moves[(*counter)++] = col;
 
-    for(int a = 0; a < 2; a++)
+    for (int a = 0; a < 2; a++)
     {
         setColor(1, a, 0, 0);
-        for(int i = 18, k = 0; i <= 42; i += 4, k++)
+        for (int i = 18, k = 0; i <= 42; i += 4, k++)
         {
-            for(int j = 21; j >= 11; j -= 2, k++)
+            for (int j = 21; j >= 11; j -= 2, k++)
             {
-                if(bitboard[a] & (1LL << k))
+                if (bitboard[a] & (1LL << k))
                 {
-                    if(height[col] == k + 1)
+                    if (height[col] == k + 1)
                     {
                         setColor(1, a, 0, 1);
                         setCursor(i - 1, j);
@@ -92,9 +92,10 @@ vector<int> listMoves(int height[])
 {
     vector<int> moves;
     long long TOP = 283691315109952LL;
-    for(int col = 0; col <= 6; col++)
+    for (int col = 0; col <= 6; col++)
     {
-        if ((TOP & (1LL << height[col])) == 0) moves.push_back(col);
+        if ((TOP & (1LL << height[col])) == 0)
+            moves.push_back(col);
     }
     return moves;
 }
@@ -103,10 +104,11 @@ bool isWin(long long bitboard)
 {
     int directions[4] = {1, 7, 6, 8};
     long long bb;
-    for(int direction : directions)
+    for (int direction : directions)
     {
         bb = bitboard & (bitboard >> direction);
-        if ((bb & (bb >> (2 * direction))) != 0) return true;
+        if ((bb & (bb >> (2 * direction))) != 0)
+            return true;
     }
     return false;
 }
