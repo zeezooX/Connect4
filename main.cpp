@@ -51,6 +51,8 @@ int main()
         int height[7] = {0, 7, 14, 21, 28, 35, 42};
         int counter = 0;
         int moves[42];
+        setCursor(16, 26);
+        printf("                     ");
         if (!x)
         {
             while (1)
@@ -68,10 +70,8 @@ int main()
                 makeMove(y, height, bitboard, &counter, moves);
                 setCursor(16, 26);
                 printf("                     ");
-
-                cout << endl << scoreBoard(bitboard);
-
                 setCursor(16, 26);
+
                 if (isWin(bitboard[(counter - 1) & 1]))
                 {
                     setColor(1, ((counter - 1) & 1), 0, 0);
@@ -119,11 +119,17 @@ int main()
                         cout << "COMPUTER";
                         setColor(1, 1, 1, 0);
                         cout << " WON!";
+                        Beep(1046, 250);
+                        Beep(698, 250);
+                        Beep(1046, 250);
                         break;
                     }
                     else if (listMoves(height).empty())
                     {
                         cout << "DRAW!";
+                        Beep(698, 250);
+                        Beep(1046, 250);
+                        Beep(698, 250);
                         break;
                     }
                     else Beep(523, 100);
@@ -149,11 +155,17 @@ int main()
                         cout << "YOU";
                         setColor(1, 1, 1, 0);
                         cout << " WON!";
+                        Beep(1046, 250);
+                        Beep(698, 250);
+                        Beep(1046, 250);
                         break;
                     }
                     else if (listMoves(height).empty())
                     {
                         cout << "DRAW!";
+                        Beep(698, 250);
+                        Beep(1046, 250);
+                        Beep(698, 250);
                         break;
                     }
                     else Beep(523, 100);
