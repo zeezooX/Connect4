@@ -21,7 +21,7 @@ pair<int, int> minimax(long long bitboard[], int height[], int alpha, int beta, 
             long long m = 1LL << c_height[col]++;
             c_bitboard[1] ^= m;
 
-            int new_score = minimax(c_bitboard, c_height, alpha, beta, depth-1, 0).second;
+            int new_score = minimax(c_bitboard, c_height, alpha, beta, depth-1, 0).second - 1;
             if(new_score > score)
             {
                 score = new_score;
@@ -45,7 +45,7 @@ pair<int, int> minimax(long long bitboard[], int height[], int alpha, int beta, 
             long long m = 1LL << c_height[col]++;
             c_bitboard[0] ^= m;
 
-            int new_score = minimax(c_bitboard, c_height, alpha, beta, depth-1, 1).second;
+            int new_score = minimax(c_bitboard, c_height, alpha, beta, depth-1, 1).second + 1;
             if(new_score < score)
             {
                 score = new_score;
