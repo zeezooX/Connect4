@@ -19,9 +19,9 @@ void setColor(bool red, bool green, bool blue, bool highlight)
 {
     SetConsoleTextAttribute(hConsole,
                             (red ? FOREGROUND_RED : 0) |
-                                (green ? FOREGROUND_GREEN : 0) |
-                                (blue ? FOREGROUND_BLUE : 0) |
-                                (highlight ? (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED) : 0));
+                            (green ? FOREGROUND_GREEN : 0) |
+                            (blue ? FOREGROUND_BLUE : 0) |
+                            (highlight ? (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED) : 0));
 }
 
 void setCursor(int col, int line)

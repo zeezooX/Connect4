@@ -13,12 +13,13 @@ int main()
     setup();
 
     string str[] =
-        {
-            "    ____   ___   _   _  _   _  _____   ____  _____   _  _   \n",
-            "   / ___| / _ \\ | \\ | || \\ | || ____| / ___||_   _| | || |  \n",
-            "  | |    | | | ||  \\| ||  \\| ||  _|  | |      | |   | || |_ \n",
-            "  | |___ | |_| || |\\  || |\\  || |___ | |___   | |   |__   _|\n",
-            "   \\____| \\___/ |_| \\_||_| \\_||_____| \\____|  |_|      |_|  \n"};
+    {
+        "    ____   ___   _   _  _   _  _____   ____  _____   _  _   \n",
+        "   / ___| / _ \\ | \\ | || \\ | || ____| / ___||_   _| | || |  \n",
+        "  | |    | | | ||  \\| ||  \\| ||  _|  | |      | |   | || |_ \n",
+        "  | |___ | |_| || |\\  || |\\  || |___ | |___   | |   |__   _|\n",
+        "   \\____| \\___/ |_| \\_||_| \\_||_____| \\____|  |_|      |_|  \n"
+    };
     cout << endl;
     for (string s : str)
     {
@@ -45,6 +46,7 @@ int main()
         int x = getch() - 48;
         cout << x;
         displayTable();
+        Beep(349, 100);
         long long bitboard[2] = {0, 0};
         int height[7] = {0, 7, 14, 21, 28, 35, 42};
         int counter = 0;
@@ -57,7 +59,7 @@ int main()
 
                 setColor(1, (counter & 1), 0, 0);
                 cout << "Player ";
-                cout << (((counter)&1) + 1);
+                cout << ((counter&1) + 1);
                 setColor(1, 1, 1, 0);
                 cout << "'s turn: ";
 
@@ -66,6 +68,9 @@ int main()
                 makeMove(y, height, bitboard, &counter, moves);
                 setCursor(16, 26);
                 printf("                     ");
+
+                cout << endl << scoreBoard(bitboard);
+
                 setCursor(16, 26);
                 if (isWin(bitboard[(counter - 1) & 1]))
                 {
@@ -74,13 +79,20 @@ int main()
                     cout << (((counter - 1) & 1) + 1);
                     setColor(1, 1, 1, 0);
                     cout << " WON!";
+                    Beep(1046, 250);
+                    Beep(698, 250);
+                    Beep(1046, 250);
                     break;
                 }
                 else if (listMoves(height).empty())
                 {
                     cout << "DRAW!";
+                    Beep(698, 250);
+                    Beep(1046, 250);
+                    Beep(698, 250);
                     break;
                 }
+                else Beep(523, 100);
             }
         }
         else if (x < 10 && x > 0)
@@ -114,6 +126,7 @@ int main()
                         cout << "DRAW!";
                         break;
                     }
+                    else Beep(523, 100);
                 }
                 else
                 {
@@ -143,6 +156,7 @@ int main()
                         cout << "DRAW!";
                         break;
                     }
+                    else Beep(523, 100);
                 }
             }
         }
