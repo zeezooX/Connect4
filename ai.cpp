@@ -57,16 +57,14 @@ pair<int, int> minimax(long long bitboard[], int height[], int alpha, int beta, 
         }
         return make_pair(column, score);
     }
-
-    //return make_pair(moves[rand() % moves.size()], 0);
 }
 
 int scoreBoard(long long bitboard[])
 {
     if(isWin(bitboard[0]))
-        return 100000;
+        return M1;
     if(isWin(bitboard[1]))
-        return -100000;
+        return -M1;
 
     long long border = -279258638311360LL;
     long long free = ~(bitboard[0] | bitboard[1] | border);
@@ -84,7 +82,7 @@ int scoreBoard(long long bitboard[])
             long long b2 = ((bitboard[i] & ~a) & ((bitboard[i] & ~a) << direction)) & y;
             long long b = b1 | b2;
 
-            score += (10 * __builtin_popcountll(a) + __builtin_popcountll(b)) * (i ? -1 : 1);
+            score += (M3 * __builtin_popcountll(a) + M2 * __builtin_popcountll(b)) * (i ? -1 : 1);
         }
     }
     return score;

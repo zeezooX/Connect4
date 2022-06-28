@@ -47,6 +47,11 @@ void setup()
 
     HWND console = GetConsoleWindow();
     MoveWindow(console, 0, 0, 750, 750, TRUE);
+
+    DWORD style = GetWindowLong(console, GWL_STYLE);
+    style &= ~WS_MAXIMIZEBOX;
+    SetWindowLong(console, GWL_STYLE, style);
+    SetWindowPos(console, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED);
 }
 
 void makeMove(int col, int height[], long long bitboard[], int *counter, int moves[])
