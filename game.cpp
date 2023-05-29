@@ -52,6 +52,8 @@ void setup()
     style &= ~WS_MAXIMIZEBOX;
     SetWindowLong(console, GWL_STYLE, style);
     SetWindowPos(console, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED);
+
+    system("CLS");
 }
 
 void makeMove(int col, int height[], long long bitboard[], int *counter, int moves[])
